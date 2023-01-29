@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 void fatal_error(const char *msg) __attribute__((noreturn));
 
