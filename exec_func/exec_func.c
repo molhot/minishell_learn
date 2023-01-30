@@ -17,8 +17,6 @@ char *searchpath(const char *filename)
     value = getenv("PATH");
     if (strlen(filename) > PATH_MAX)
         fatal_error("strlen");
-    printf("PATH is > %s\n", value);
-    printf("PATHMAX is %d\n", PATH_MAX);
     while (*value != '\0')
     {
         bzero(path, PATH_MAX);
@@ -91,7 +89,6 @@ int interpret(char *line, char **cmd_arg)
         fatal_error("fork");
     else if (pid == 0)
     {
-        execve("echo", argv, environ);
         execve(searchpath(line), argv, environ);
         fatal_error("execve");
         return (1);
@@ -110,6 +107,5 @@ void exec(char *input)
 	splited_line = ft_split((const char *)input, ' ');
 	printf("%s\n", splited_line[0]);
 	printf("%s\n", splited_line[1]);
-	printf("%s\n", splited_line[2]);
 	interpret(splited_line[0], splited_line);
 }

@@ -6,7 +6,7 @@
 /*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:28:10 by user              #+#    #+#             */
-/*   Updated: 2023/01/30 16:58:45 by satushi          ###   ########.fr       */
+/*   Updated: 2023/01/30 17:12:58 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include <stdbool.h>
 #include <sys/wait.h>
 #include <assert.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 typedef struct s_token t_token;
 
