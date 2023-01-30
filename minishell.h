@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:28:10 by user              #+#    #+#             */
-/*   Updated: 2023/01/29 16:39:27 by user             ###   ########.fr       */
+/*   Updated: 2023/01/30 16:58:45 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
+#include <stdbool.h>
+#include <sys/wait.h>
+#include <assert.h>
 
 typedef struct s_token t_token;
 
@@ -34,5 +37,12 @@ struct s_token {
     t_token_kind kind;
     t_token *next;
 };
+
+t_token *torknizer(char *line);
+int interpret(char *line, char **cmd_arg);
+size_t	strlcat(char *dst, const char *src, size_t dstsize);
+size_t	strlcpy(char *dst, const char *src, size_t size);
+char	**ft_split(char const *s, char c);
+void exec(char *input);
 
 #endif
