@@ -55,7 +55,7 @@ char **prepare_cmdargs(char **cmd_args_withcmd, int malloc_size)
 	position = 0;
     printf("malloc size is %d\n", malloc_size);
 	cmdargs = (char **)malloc(sizeof(char *) * (malloc_size));
-	while (cmd_args_withcmd[array_counter] != NULL)
+	while (cmd_args_withcmd[array_counter + 1] != NULL)
 	{
 		args_len = strlen(cmd_args_withcmd[array_counter + 1]);
 		cmdargs[array_counter] = (char *)malloc(sizeof(char) * (args_len + 1));
@@ -86,14 +86,17 @@ int interpret(char *line, char **cmd_arg)
 	argv = prepare_cmdargs(cmd_arg, i);
     printf("cmd is %s\n", line);
     printf("arg is %s\n", argv[0]);
+    printf("arg is %s\n", argv[1]);
     pid = fork();
     if (pid < 0)
         fatal_error("fork");
     else if (pid == 0)
     {
-        printf("\n");
-        execve("echo", argv, environ);
-        //execve(searchpath(line), argv, environ);
+        //printf("\n");
+        //printf("%s\n",searchpath("echo"));
+        //execve(searchpath("echo"), argv, environ);
+        execve("/bin/echo", argv, environ);
+        execve(searchpath(line), argv, environ);
         fatal_error("execve\n");
         return (1);
     }
