@@ -108,7 +108,6 @@ t_token *torknizer(char *line)
     t_token *tok;
 
     head.next = NULL;
-	printf("%s\n", line);
     tok = &head;
     while (*line)
     {
