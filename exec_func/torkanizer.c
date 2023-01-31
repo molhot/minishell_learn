@@ -21,6 +21,23 @@ t_token *word(char **rest, char *line)
     return (net_token(word, TK_WORD));
 }
 
+bool    is_blank(char c)
+{
+    return (c == ' ' || c == '\t' || c == '\n');
+}
+
+bool consume_blank(char **rest, char *line)
+{
+    if (is_blank(*line))
+    {
+        while (*line && is_blank(*line))
+            line++;
+        *rest = line;
+        return (true);
+    }
+    return (false);
+}
+
 t_token *torknizer(char *line)
 {
     t_token head;
