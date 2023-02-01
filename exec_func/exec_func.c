@@ -88,8 +88,33 @@ int interpret(char *line, char **cmd_arg)
         fatal_error("fork");
     else if (pid == 0)
     {
-        execve("/bin/echo", argv, environ);
         execve(searchpath(line), argv, environ);
+        fatal_error("execve\n");
+        return (1);
+    }
+    else
+    {
+        wait(&wstatus);
+        return (WEXITSTATUS(wstatus));
+    }
+}
+
+void abusolute_path(char *line)
+{
+    char    **argv;
+    int     i;
+    pid_t pid;
+
+    i = 0;
+    while (line[i] != '\0')
+        i++;
+    argv = prepare_cmdargs(line, i);
+    pid = fork();
+    if (pid < 0)
+        fatal_error("fork");
+    else if (pid == 0)
+    {
+        execve(line, argv, environ);
         fatal_error("execve\n");
         return (1);
     }
