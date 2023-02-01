@@ -88,7 +88,6 @@ int interpret(char *line, char **cmd_arg)
         fatal_error("fork");
     else if (pid == 0)
     {
-        printf("%s\n",searchpath(line));
         execve("/bin/echo", argv, environ);
         execve(searchpath(line), argv, environ);
         fatal_error("execve\n");
