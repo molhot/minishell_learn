@@ -4,6 +4,7 @@ int main()
 {
 	char *line;
 	t_token *tok;
+	extern char **environ;
 
 	rl_outstream = stderr;
 	while (1)
