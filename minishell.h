@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:28:10 by user              #+#    #+#             */
-/*   Updated: 2023/02/01 23:00:57 by satushi          ###   ########.fr       */
+/*   Updated: 2023/02/02 23:39:35 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	**ft_split(char const *s, char c);
 void exec(char *input);
-void abusolute_path(char *line);
+int abusolute_path(char *line);
 
 #endif

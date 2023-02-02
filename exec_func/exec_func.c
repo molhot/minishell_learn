@@ -24,14 +24,13 @@ char *searchpath(const char *filename)
         if (end)
             strncpy(path, value, end - value);
         else
-            strlcpy(path, value, PATH_MAX);
-        strlcat(path, "/", PATH_MAX);
-        strlcat(path, filename, PATH_MAX);
+            ft_strlcpy(path, value, PATH_MAX);
+        ft_strlcat(path, "/", PATH_MAX);
+        ft_strlcat(path, filename, PATH_MAX);
         if (access(path, X_OK) == 0)
         {
             char *dup;
 
-            printf(">>access is OK\n");
             dup = strdup(path);
             if (dup == NULL)
                 fatal_error("strdup");
@@ -99,22 +98,26 @@ int interpret(char *line, char **cmd_arg)
     }
 }
 
-void abusolute_path(char *line)
+int abusolute_path(char *line)
 {
     char    **argv;
+	char	**line_splited;
     int     i;
     pid_t pid;
+	int wstatus;
+	extern char **environ;
 
     i = 0;
-    while (line[i] != '\0')
-        i++;
-    argv = prepare_cmdargs(line, i);
+	line_splited = ft_split(line, ' ');
+    while (line_splited[i] != NULL)
+		i++;
+    argv = prepare_cmdargs(line_splited, i);
     pid = fork();
     if (pid < 0)
         fatal_error("fork");
     else if (pid == 0)
     {
-        execve(line, argv, environ);
+        execve(argv[0], argv, environ);
         fatal_error("execve\n");
         return (1);
     }

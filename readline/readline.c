@@ -4,7 +4,6 @@ int main()
 {
 	char *line;
 	t_token *tok;
-	extern char **environ;
 
 	rl_outstream = stderr;
 	while (1)
@@ -16,8 +15,11 @@ int main()
 			add_history(line);
 		if (line[0] == '/')
 			abusolute_path(line);
-		tok = torknizer(line);
-		exec(tok->word);
+		else
+		{
+			tok = torknizer(line);
+			exec(tok->word);
+		}
 		free(line);
 	}
 	exit(0);
