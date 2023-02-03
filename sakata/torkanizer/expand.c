@@ -69,7 +69,7 @@ void	quote_removal(t_token *tok)
 	quote_removal(tok->next);
 }
 
-void expand(t_token *tok)
+void expand(t_node *node)
 {
-	quote_removal(tok);
+	quote_removal(node->args);
 }

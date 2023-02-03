@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:28:10 by user              #+#    #+#             */
-/*   Updated: 2023/02/02 23:39:35 by satushi          ###   ########.fr       */
+/*   Updated: 2023/02/03 22:59:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,20 @@ enum e_token_kind {
     TK_OP,
     TK_EOF,
 };
+
+typedef enum e_node_kind t_node_kind;
+typedef struct s_node t_node;
+
+enum e_node_kind{
+    ND_SIMPLE_CMD,
+};
+
+struct s_node {
+    t_token *args;
+    t_node_kind kind_node;
+    t_node *next;
+};
+
 typedef enum e_token_kind t_token_kind;
 
 struct s_token {
@@ -49,6 +63,8 @@ char	**ft_split(char const *s, char c);
 void exec(char *input);
 int abusolute_path(char *line);
 bool    is_metacharactert(char c);
-void expand(t_token *tok);
+void expand(t_node *tok);
+t_token *new_token(char *word, t_token_kind kind);
+t_node *parse(t_token *tok);
 
 #endif

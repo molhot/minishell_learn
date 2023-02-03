@@ -4,12 +4,13 @@ int main()
 {
 	char	*line;
 	t_token	*tok;
+	t_node *node;
 
 	rl_outstream = stderr;
 	while (1)
 	{
 		line = readline("minishell$ ");
-		if (line == NULL)
+		if (line == NULL || line[0] == 0)
 			break;
 		if (*line)
 			add_history(line);
@@ -18,8 +19,9 @@ int main()
 		else
 		{
 			tok = torknizer(line);
-			expand(tok);
-			exec(tok->word);
+			node = parse(tok);
+			expand(node);
+			exec(node->args->word);
 		}
 		free(line);
 	}

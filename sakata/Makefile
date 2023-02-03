@@ -1,5 +1,5 @@
 NAME=minishell
-SRCS=exec_func/exec_func.c torkanizer/torkanizer.c torkanizer/expand.c\
+SRCS=exec_func/exec_func.c torkanizer/torkanizer.c torkanizer/expand.c pasrser/parser.c\
 		utils/strlcat.c utils/strlcpy.c utils/split.c\
 		readline/readline.c
 OBJS=$(SRCS:%.c=%.o)
