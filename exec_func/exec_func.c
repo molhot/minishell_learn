@@ -73,7 +73,7 @@ char **prepare_cmdargs(char **cmd_args_withcmd, int malloc_size)
 int interpret(char *line, char **cmd_arg)
 {
     extern char **environ;
-    char **argv;
+    //char **argv;
     pid_t pid;
     int wstatus;
 	size_t i;
@@ -81,13 +81,13 @@ int interpret(char *line, char **cmd_arg)
 	i = 0;
 	while (cmd_arg[i] != NULL)
 		i++;
-	argv = prepare_cmdargs(cmd_arg, i);
+	//argv = prepare_cmdargs(cmd_arg, i);
     pid = fork();
     if (pid < 0)
         fatal_error("fork");
     else if (pid == 0)
     {
-        execve(searchpath(line), argv, environ);
+        execve(searchpath(line), cmd_arg, environ);
         fatal_error("execve\n");
         return (1);
     }

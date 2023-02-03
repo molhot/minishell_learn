@@ -50,6 +50,17 @@ void	quote_removal(t_token *tok)
 			}
 			p++;
 		}
+		else if (*p == '\"')
+		{
+			p++;
+			while (*p != '\"')
+			{
+				if (*p == '\0')
+					fatal_error("double quote\n");
+				append_char(&new_word, *p++);
+			}
+			p++;
+		}
 		else
 			append_char(&new_word, *p++);
 	}

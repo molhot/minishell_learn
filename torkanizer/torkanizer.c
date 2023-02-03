@@ -42,7 +42,7 @@ t_token *word(char **rest, char *line)
 
     while (*line != '\0' && !is_metacharactert(*line))
 	{
-        line++;
+        //line++;
 		if (*line == '\'')
 		{
 			line++;
@@ -50,6 +50,17 @@ t_token *word(char **rest, char *line)
 			{
 				if (*line == '\0')
 					fatal_error("single quote\n"); //singlequote is not closed
+				line++;
+			}
+			line++;
+		}
+		else if (*line == '\"')
+		{
+			line++;
+			while (*line != '\"')
+			{
+				if (*line == '\0')
+					fatal_error("double quote\n"); //doublelequote is not closed
 				line++;
 			}
 			line++;
@@ -77,6 +88,8 @@ bool	is_operator(const char *s)
 	}
 	return (false);
 }
+
+//echo 12 | echo hello | echo 13
 
 t_token *operator(char **rest, char *line)
 {
