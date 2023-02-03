@@ -48,5 +48,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	**ft_split(char const *s, char c);
 void exec(char *input);
 int abusolute_path(char *line);
+bool    is_metacharactert(char c);
+void expand(t_token *tok);
 
 #endif

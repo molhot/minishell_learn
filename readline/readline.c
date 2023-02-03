@@ -2,8 +2,8 @@
 
 int main()
 {
-	char *line;
-	t_token *tok;
+	char	*line;
+	t_token	*tok;
 
 	rl_outstream = stderr;
 	while (1)
@@ -18,6 +18,7 @@ int main()
 		else
 		{
 			tok = torknizer(line);
+			expand(tok);
 			exec(tok->word);
 		}
 		free(line);

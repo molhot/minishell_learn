@@ -41,7 +41,22 @@ t_token *word(char **rest, char *line)
     char *word;
 
     while (*line != '\0' && !is_metacharactert(*line))
+	{
         line++;
+		if (*line == '\'')
+		{
+			line++;
+			while (*line != '\'')
+			{
+				if (*line == '\0')
+					fatal_error("single quote\n"); //singlequote is not closed
+				line++;
+			}
+			line++;
+		}
+		else
+			line++;
+	}
     word = strndup(start, line - start);
     if (word == NULL)
         fatal_error("strndup");
