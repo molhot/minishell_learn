@@ -13,7 +13,7 @@ int main()
 			break;
 		if (*line)
 			add_history(line);
-		if (line[0] == '/')
+		if (line[0] == '/' || line[0] == '.')
 			abusolute_path(line);
 		else
 		{
